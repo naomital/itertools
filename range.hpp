@@ -15,6 +15,10 @@ range(Template start, Template finish) {
         this->start = start;
         this->finish = finish;
 }
+range(range const &other) {
+        this->start = other.start;
+        this->finish = other.finish;
+}
 class iterator {
 
 private:
