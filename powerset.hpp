@@ -25,50 +25,50 @@ namespace itertools {
         class iterator {
 
         private:
-            C it1;
-            C it2;
-            int   index;
-            int   counter;
+            C it_s;
+            C it_b;
+            unsigned   i;
+            unsigned   count;
 
 
         public:
-            iterator(C itA , C itB): it1(itA), it2(itB) , index(0),counter(0)  {
+            iterator(C itA , C itB): it_s(itA), it_b(itB) , i(0),count(0)  {
 
-            C _element_iterator = it1;
-            while (_element_iterator != it2)
+            C iterator = it_s;
+            while (iterator != it_b)
             {
-                ++counter;
-                ++_element_iterator;
+                ++count;
+                ++iterator;
             }
 
-            counter = std::pow(2, counter);
+            count = std::pow(2, count);
             }
 
            iterator<C>& operator++() {
-               ++index;
+               ++i;
                return *this;
             }
 
-            set<decltype(*it1)> operator*() const         {
-            C _element_iterator = it1;
-            std::set<decltype(*it1)> S;
-            unsigned int i = index;
-            while (i != 0 && _element_iterator != it2)
+            set<decltype(*it_s)> operator*() const         {
+            C iterator = it_s;
+            std::set<decltype(*it_s)> S;
+            unsigned int index = i;
+            while (index != 0 && iterator != it_b)
             {
-                unsigned int r = i % 2;
-                i = i >> 1;
+                unsigned int r = index % 2;
+                index = index >> 1;
 
                 if (r == 1)
-                    S.insert(*_element_iterator);
+                    S.insert(*iterator);
 
-                ++_element_iterator;
+                ++iterator;
             }
 
             return S;
         }
 
         bool operator!=(iterator<C> const &it) const {
-            return ((counter - index) != (it.counter - it.index - 1));
+            return ((count - i) != (it.count - it.i - 1));
 
             }
 

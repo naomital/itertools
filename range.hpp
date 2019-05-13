@@ -6,65 +6,43 @@ namespace itertools {
 template <typename Template>
 class range {
 
-public:
+private:
 
 Template start;
 Template finish;
 
-range(Template start, Template finish) {
-        this->start = start;
-        this->finish = finish;
-}
-range(range const &other) {
-        this->start = other.start;
-        this->finish = other.finish;
-}
-class iterator {
-
-private:
-Template* it;
+class iterator
+{
 
 public:
+    Template it;
+
+    //constructor
+    iterator(Template v) : it(v){}
+
+    // operators
+    bool operator!=(iterator const &other) const
+    {
+        return it != (other.it);
+    }
+
+    Template operator*() const
+    {
+        return it;
+    }
 
 
-iterator(Template* it = nullptr) : it(it) {
-}
+    iterator &operator++()
+    {
 
-iterator& operator++() {
-        (*it)++;
+        ++it;
         return *this;
-}
-
-
-Template& operator*() const {
-        return *it;
-}
-
-
-const iterator operator++(int) {
-        iterator temp = *this;
-        it++;
-        return temp;
-}
-
-bool operator!=(iterator itr) const {
-        return *it != *itr.it;
-}
-
-bool operator==(iterator itr) const {
-        return *it == *itr.it;
-}
+    }
 };
 
-iterator begin()
-{
-        return iterator{&start};
-}
-
-iterator end()
-{
-        return iterator{&finish};
-}
-
+public:
+range(Template from, Template to) : start(from), finish(to) {}
+iterator begin() const { return iterator(start); }
+iterator end() const { return iterator(finish); }
 };
 }
