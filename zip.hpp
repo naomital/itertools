@@ -2,7 +2,7 @@
 
 
 namespace itertools {
-
+//template class zip, that have the method of:begin, end.
 template <typename Template1, typename Template2>
 class zip {
 
@@ -21,7 +21,7 @@ auto begin(){
 auto end() {
         return iterator<decltype(it1.end()),decltype(it2.end())>(it1.end(), it2.end());
 }                                                                                          // iteratable object
-
+//template class iterator, that have the method of:++, *(), !=,==.
 template <typename C1, typename C2>
 class iterator {
 
@@ -50,7 +50,10 @@ bool operator!=(iterator<C1,C2>  it){
         return (it1 != it.it1) && (it2 != it.it2);
 
 }
+bool operator==(iterator<C1,C2>  it){
+        return (it1 == it.it1) && (it2 != it.it2);
 
+}
 
 
 };        
