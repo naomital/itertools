@@ -69,12 +69,12 @@ for (char i: chain(range('a','d'), string("hello")))
    testcase.CHECK_EQUAL(i, Stest[number]);
    number++;
  }
-// char Stest6[]={'1','2','3','4','h','e','l','l','o'};
-// for (char i: chain(range('1','5'), string("hello")))
-//  {
-//    testcase.CHECK_EQUAL(i, Stest6[number]);
-//   number++;
-//  }
+char Stest6[]={'1','2','3','4','h','e','l','l','o'};
+for (char i: chain(range('1','5'), string("hello")))
+ {
+   testcase.CHECK_EQUAL(i, Stest6[number]);
+  number++;
+ }
 
 
 
@@ -159,14 +159,41 @@ for (auto pair: product(range(1,3), zip(range(1,3),string("hel"))))
 //powerset
 testcase.setname("powerset");
 number=0;
-   string Stest15[]={"0,z","0,r","1,z","1,r","2,z","2,r","3,z","3,r","4,z","4,r"};
-for (auto pair: powerset(range(0,5), string("zr")))
+   string Stest15[]={"{}","{0}","{1}","{0,1}","{2}","{0,2}","{1,2}","{0,1,2}"};
+for (auto pair: powerset(range(0,3)))
 {
    testcase.CHECK_OUTPUT(pair,Stest15[number]);
    number++;
+ }
+number=0;
+   string Stest16[]={"{}","{p}","{i}","{p,i}","{p}","{p,p}","{i,p}","{p,i,p}"};
+for (auto pair: powerset(string("pip"))){
+   testcase.CHECK_OUTPUT(pair,Stest16[number]);
+   number++;
 }
-
-
+number=0;
+   string Stest20[]={"{}","{1,a}","{2,b}","{1,a,2,b}"};
+for (auto pair: powerset(zip(range(1,3),string("ab"))))
+{
+   testcase.CHECK_OUTPUT(pair,Stest20[number]);
+   number++;
+ }
+number=0;
+string Stest21[]={"{}","{1,h}","{2,h}","{1,h,2,h}"};
+ for (auto pair: powerset(product(range(1,3), string("h")))){
+ testcase.CHECK_OUTPUT(pair,Stest21[number]);
+    number++;
+ }
+ number=0;
+string Stest23[]={"{}","{1,x}","{2,y}","{1,x,2,y}"};
+ for (auto pair: powerset(zip(range(1,3), string("xy")))){
+ testcase.CHECK_OUTPUT(pair,Stest23[number]);
+number++;
+  }
+ for (auto pair: powerset(zip(range(1,4), string("xyz")))){
+    number++;
+ }
+ testcase.CHECK_EQUAL(number==16,true);
 
 
 
