@@ -39,7 +39,7 @@ for (int i : range(0, 9))
        testcase.CHECK_EQUAL(i, number);
        number++;
      }
-    
+
      number=-99;
       for (int i : range(-99, -88))
      {
@@ -52,7 +52,7 @@ for (int i : range(0, 9))
        testcase.CHECK_EQUAL(i, number);
        number++;
      }
-     
+
 //chain
  testcase.setname("chain");
     number=0;

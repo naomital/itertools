@@ -13,11 +13,11 @@ public:
 chain(Template1 start, Template2 end) :  it1(start), it2(end) {
 }
 
-auto begin(){
+auto begin() const{
         return iterator<decltype(it1.begin()),decltype(it2.begin())>(it1.begin(), it2.begin());
 }
 
-auto end() {
+auto end() const{
         return iterator<decltype(it1.end()),decltype(it2.end())>(it1.end(), it2.end());
 }
 template <typename C1, typename C2>
@@ -55,12 +55,6 @@ bool operator!=(iterator<C1,C2>  it){
         }else{
                 return it2 != it.it2;
         }
-}
-const iterator operator++(int) {
-
-}
-bool operator==(iterator itr) const {
-
 }
 };
 
